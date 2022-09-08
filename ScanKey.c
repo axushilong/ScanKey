@@ -6,6 +6,8 @@
  * @brief   ScanKey组件实现
  */
 #include "ScanKeyPort.h"
+//#include "CH58x_gpio.h"
+
 
 #define DE_SKEventCallBack(Key) ((stScanKeyTypes *)Key)->vfpSKCallBack(((stScanKeyTypes *)Key))
 
@@ -163,7 +165,7 @@ void vScanKey(stScanKeyCtrlDataTypes * pstKeyCtrlData, stScanKeyTypes * pstSK){
 					// pstSK[ucI].ucDebounceTick = 0;/*方便确认下次有没有经过抖动验证*/
 					pstSK[ucI].usDoubleStartTick = pstSK[ucI].usSKScanCount;/*用于双击抬起的时间判断*/
 					pstSK[ucI].ucSKStatus = DE_SKStatusDownContinue;
-					pstSK[ucI].ucSKEvent = DE_SKEventDownContinueYes;/*确认按下L事件*/
+					pstSK[ucI].ucSKEvent = DE_SKEventDownContinueYes0;/*确认按下L事件*/
 					DE_SKEventCallBack(&pstSK[ucI]);//pstSK[ucI].pfSKCallBack(&pstSK[ucI].ucSKEvent);
 				}else{/*按键是一直按下的,但没到连击起始值*/
 					;

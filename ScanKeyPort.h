@@ -8,7 +8,14 @@
 #ifndef __SCANKEYPORT_H__
 #define __SCANKEYPORT_H__
 
-// #include <stdint.h>
+#ifdef __cplusplus
+extern "C"{
+#endif
+
+
+#include <stdint.h>
+//#include "CH58x_gpio.h"
+
 /*
 
 */
@@ -19,11 +26,11 @@
 /**< 按键数位宽类型,按键数在1~8之间可以是uint8_t;在9~16之间可以是uint16_t;在17~32之间可以是uint32_t */
 typedef unsigned char skwide_t;
 
-#define DE_SKDebounceTick      (3)  /**< 按键消抖需要的循环滴答次数(30ms,100ms) */
-#define DE_SKIntervalTick      (20) /**< 判断双击动作,按键第一次抬起的最长滴答次数(200ms,400ms) */
-#define De_SKLongStartTick     (250)/**< 按键长按开始所经历的滴答次数(2500ms,5000ms) */
-#define De_SKContinueStartTick (400) /**< 按键长按触发连击时所需的连击间隔滴答次数(4000ms,8000ms) */
-#define De_SKContinueTick      (25) /**< 按键长按触发连击时所需的连击间隔滴答次数(250ms,500ms) */
+#define DE_SKDebounceTick      (3)   /**< 按键消抖需要的循环滴答次数(30ms,100ms) */
+#define DE_SKIntervalTick      (10)  /**< 判断双击动作,按键第一次抬起的最长滴答次数(200ms,400ms) */
+#define De_SKLongStartTick     (150) /**< 按键长按开始所经历的滴答次数(2500ms,5000ms) */
+#define De_SKContinueStartTick (233) /**< 按键长按触发连击时所需的连击间隔滴答次数(4000ms,8000ms) */
+#define De_SKContinueTick      (16)  /**< 按键长按触发连击时所需的连击间隔滴答次数(250ms,500ms) */
 
 /* 上面面是需要配置的参数 ↑ */
 
@@ -68,28 +75,29 @@ typedef unsigned char skwide_t;
 //     SKEventNone,           /**< 没有事件 */
 // };
 
-#define DE_SKEventDown0            (0)/**< 按下事件 */
-#define DE_SKEventDown0Yes         (1)/**< 按下通过抖动事件 */
-#define DE_SKEventDown0No          (2)/**< 按下不通过抖动事件 */
-#define DE_SKEventUp0              (3)/**< 抬起事件 */
-#define DE_SKEventUp0Yes           (4)/**< 抬起通过抖动事件 */
-#define DE_SKEventUp0No            (5)/**< 抬起不通过抖动事件 */
-#define DE_SKEventDown1            (6)/**< 再次按下事件 */
-#define DE_SKEventDown1Yes         (7)/**< 再次按下通过抖动事件 */
-#define DE_SKEventDown1No          (8)/**< 再次按下不通过抖动事件 */
-#define DE_SKEventDoubleNo         (9)/**< 非双击事件 */
-#define DE_SKEventUp1             (10)/**< 再次抬起事件 */
-#define DE_SKEventUp1Yes          (11)/**< 再次抬起通过抖动事件 */
-#define DE_SKEventUp1No           (12)/**< 再次抬起不通过抖动事件 */
-#define DE_SKEventDownLongYes     (13)/**< 长按确认事件 */
-#define DE_SKEventUpL             (14)/**< 长按抬起事件 */
-#define DE_SKEventUpLYes          (15)/**< 长按抬起通过抖动事件 */
-#define DE_SKEventUpLNo           (16)/**< 长按抬起不通过抖动事件 */
-#define DE_SKEventDownContinueYes (17)/**< 连按确认开始事件 */
-#define DE_SKEventUpC             (18)/**< 连按抬起事件 */
-#define DE_SKEventUpCYes          (19)/**< 连按抬起通过抖动事件 */
-#define DE_SKEventUpCNo           (20)/**< 连按抬起不通过抖动事件 */
-// #define DE_SKEventNone            (21)/**< 没有事件 */
+#define DE_SKEventDown0             (0)/**< 按下事件 */
+#define DE_SKEventDown0Yes          (1)/**< 按下通过抖动事件 */
+#define DE_SKEventDown0No           (2)/**< 按下不通过抖动事件 */
+#define DE_SKEventUp0               (3)/**< 抬起事件 */
+#define DE_SKEventUp0Yes            (4)/**< 抬起通过抖动事件 */
+#define DE_SKEventUp0No             (5)/**< 抬起不通过抖动事件 */
+#define DE_SKEventDown1             (6)/**< 再次按下事件 */
+#define DE_SKEventDown1Yes          (7)/**< 再次按下通过抖动事件 */
+#define DE_SKEventDown1No           (8)/**< 再次按下不通过抖动事件 */
+#define DE_SKEventDoubleNo          (9)/**< 非双击事件 */
+#define DE_SKEventUp1              (10)/**< 再次抬起事件 */
+#define DE_SKEventUp1Yes           (11)/**< 再次抬起通过抖动事件 */
+#define DE_SKEventUp1No            (12)/**< 再次抬起不通过抖动事件 */
+#define DE_SKEventDownLongYes      (13)/**< 长按确认事件 */
+#define DE_SKEventUpL              (14)/**< 长按抬起事件 */
+#define DE_SKEventUpLYes           (15)/**< 长按抬起通过抖动事件 */
+#define DE_SKEventUpLNo            (16)/**< 长按抬起不通过抖动事件 */
+#define DE_SKEventDownContinueYes0 (17)/**< 连按确认开始事件 */
+#define DE_SKEventDownContinueYes  (18)/**< 连按确认事件 */
+#define DE_SKEventUpC              (19)/**< 连按抬起事件 */
+#define DE_SKEventUpCYes           (20)/**< 连按抬起通过抖动事件 */
+#define DE_SKEventUpCNo            (21)/**< 连按抬起不通过抖动事件 */
+// #define DE_SKEventNone             (22)/**< 没有事件 */
 
 typedef void(*vfpSKCallBackTpye)(void*);/**< 定义扫描按键回调处理函数指针类型 */
 
@@ -115,11 +123,7 @@ typedef struct {
 }stScanKeyCtrlDataTypes;
 
 
-#ifdef __cplusplus
-extern "C"{
-#endif
-
-skwide_t kwSKPortReadKeyVal(stScanKeyTypes * pstSK);/**< 返回激活的按键数据,按键按下表示激活,对应位置1 */
+extern skwide_t kwSKPortReadKeyVal(stScanKeyTypes * pstSK);/**< 返回激活的按键数据,按键按下表示激活,对应位置1 */
 
 /**
   * @brief   
@@ -130,7 +134,7 @@ skwide_t kwSKPortReadKeyVal(stScanKeyTypes * pstSK);/**< 返回激活的按键�
   * @version V1.0.0
   * @date    2021/02/08
   */
-void vScanKey(stScanKeyCtrlDataTypes * pstKeyCtrlData, stScanKeyTypes * pstSK);
+extern void vScanKey(stScanKeyCtrlDataTypes * pstKeyCtrlData, stScanKeyTypes * pstSK);
 
 #ifdef __cplusplus
 }
