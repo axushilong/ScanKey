@@ -1,0 +1,125 @@
+Dependencies for Project 'ScanKeyProject', Target 'PY32F071xB_Project': (DO NOT MODIFY !)
+CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARM_Compiler_5.06u7
+F (..\Src\system_py32f071.c)(0x68C111B7)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc -I ..\Src\Inc -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include-ID:\Keil_v5\Packs\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-D__UVISION_VERSION="540" -DPY32F071xB -DUSE_FULL_LL_DRIVER-o .\output\system_py32f071.o --omf_browse .\output\system_py32f071.crf --depend .\output\system_py32f071.d)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f0xx.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f071xB.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\core_cm0plus.h)(0x68C111B7)
+I (D:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_version.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_compiler.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_armcc.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\system_py32f0xx.h)(0x68C111B7)
+F (..\Src\startup_py32f071xx.s)(0x68C111B7)(--cpu Cortex-M0+ -g --apcs=interwork --pd "__MICROLIB SETA 1"-ID:\Keil_v5\Packs\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include--pd "__UVISION_VERSION SETA 540"--list .\output\startup_py32f071xx.lst --xref -o .\output\startup_py32f071xx.o --depend .\output\startup_py32f071xx.d)
+F (..\Src\ScanKeyApp.c)(0x6937C726)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc -I ..\Src\Inc -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include-ID:\Keil_v5\Packs\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-D__UVISION_VERSION="540" -DPY32F071xB -DUSE_FULL_LL_DRIVER-o .\output\scankeyapp.o --omf_browse .\output\scankeyapp.crf --depend .\output\scankeyapp.d)
+I (..\Src\Inc\ScanKeyApp.h)(0x6933EF11)
+I (D:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
+I (..\Src\Inc\board.h)(0x6933FA34)
+I (D:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_rcc.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f0xx.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f071xB.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\core_cm0plus.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_version.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_compiler.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_armcc.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\system_py32f0xx.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_bus.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_utils.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_gpio.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_exti.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_cortex.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_pwr.h)(0x68C111B6)
+I (D:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\string.h)(0x5E8E3CC2)
+I (..\Src\Inc\TimerWDog.h)(0x6933EE51)
+F (..\Src\main.c)(0x6933EEC4)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc -I ..\Src\Inc -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include-ID:\Keil_v5\Packs\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-D__UVISION_VERSION="540" -DPY32F071xB -DUSE_FULL_LL_DRIVER-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
+I (..\Src\Inc\board.h)(0x6933FA34)
+I (D:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
+I (D:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_rcc.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f0xx.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f071xB.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\core_cm0plus.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_version.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_compiler.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_armcc.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\system_py32f0xx.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_bus.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_utils.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_gpio.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_exti.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_cortex.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_pwr.h)(0x68C111B6)
+I (..\Src\Inc\ScanKeyApp.h)(0x6933EF11)
+F (..\Src\py32f071_it.c)(0x6933DA03)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc -I ..\Src\Inc -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include-ID:\Keil_v5\Packs\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-D__UVISION_VERSION="540" -DPY32F071xB -DUSE_FULL_LL_DRIVER-o .\output\py32f071_it.o --omf_browse .\output\py32f071_it.crf --depend .\output\py32f071_it.d)
+I (..\Src\Inc\board.h)(0x6933FA34)
+I (D:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
+I (D:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_rcc.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f0xx.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f071xB.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\core_cm0plus.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_version.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_compiler.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_armcc.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\system_py32f0xx.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_bus.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_utils.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_gpio.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_exti.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_cortex.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_pwr.h)(0x68C111B6)
+I (..\Src\Inc\py32f071_it.h)(0x68C111B7)
+F (..\Src\board.c)(0x6933DA37)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc -I ..\Src\Inc -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include-ID:\Keil_v5\Packs\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-D__UVISION_VERSION="540" -DPY32F071xB -DUSE_FULL_LL_DRIVER-o .\output\board.o --omf_browse .\output\board.crf --depend .\output\board.d)
+I (..\Src\Inc\board.h)(0x6933FA34)
+I (D:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
+I (D:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_rcc.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f0xx.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f071xB.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\core_cm0plus.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_version.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_compiler.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_armcc.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\system_py32f0xx.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_bus.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_utils.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_gpio.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_exti.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_cortex.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_pwr.h)(0x68C111B6)
+F (..\Src\TimerWDog.c)(0x6933EE47)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc -I ..\Src\Inc -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include-ID:\Keil_v5\Packs\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-D__UVISION_VERSION="540" -DPY32F071xB -DUSE_FULL_LL_DRIVER-o .\output\timerwdog.o --omf_browse .\output\timerwdog.crf --depend .\output\timerwdog.d)
+I (..\Src\Inc\TimerWDog.h)(0x6933EE51)
+I (..\Src\Inc\board.h)(0x6933FA34)
+I (D:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
+I (D:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_rcc.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f0xx.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f071xB.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\core_cm0plus.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_version.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_compiler.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_armcc.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\system_py32f0xx.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_bus.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_utils.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_gpio.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_exti.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_cortex.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_pwr.h)(0x68C111B6)
+F (..\..\..\..\ScanKey.c)(0x693A214E)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc -I ..\Src\Inc -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include-ID:\Keil_v5\Packs\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-D__UVISION_VERSION="540" -DPY32F071xB -DUSE_FULL_LL_DRIVER-o .\output\scankey.o --omf_browse .\output\scankey.crf --depend .\output\scankey.d)
+I (..\..\..\..\ScanKey.h)(0x69394584)
+I (D:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
+I (..\..\..\..\ScanKeyPort.h)(0x6939381F)
+F (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Src\py32f071_ll_utils.c)(0x68C111B5)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc -I ..\Src\Inc -I ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include-ID:\Keil_v5\Packs\Puya\PY32F0xx_DFP\1.2.8\Drivers\CMSIS\Device\PY32F0xx\Include-D__UVISION_VERSION="540" -DPY32F071xB -DUSE_FULL_LL_DRIVER-o .\output\py32f071_ll_utils.o --omf_browse .\output\py32f071_ll_utils.crf --depend .\output\py32f071_ll_utils.d)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_utils.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f0xx.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f071xB.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\core_cm0plus.h)(0x68C111B7)
+I (D:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_version.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_compiler.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_armcc.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\system_py32f0xx.h)(0x68C111B7)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_rcc.h)(0x68C111B6)
+I (..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_system.h)(0x68C111B6)
+F (..\readme.txt)(0x69377580)()

@@ -1,0 +1,14 @@
+.\output\py32f071_ll_utils.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Src\py32f071_ll_utils.c
+.\output\py32f071_ll_utils.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_utils.h
+.\output\py32f071_ll_utils.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f0xx.h
+.\output\py32f071_ll_utils.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f071xB.h
+.\output\py32f071_ll_utils.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\core_cm0plus.h
+.\output\py32f071_ll_utils.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+.\output\py32f071_ll_utils.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_version.h
+.\output\py32f071_ll_utils.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_compiler.h
+.\output\py32f071_ll_utils.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_armcc.h
+.\output\py32f071_ll_utils.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\system_py32f0xx.h
+.\output\py32f071_ll_utils.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_rcc.h
+.\output\py32f071_ll_utils.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f0xx.h
+.\output\py32f071_ll_utils.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\PY32F071_HAL_Driver\Inc\py32f071_ll_system.h
+.\output\py32f071_ll_utils.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f0xx.h

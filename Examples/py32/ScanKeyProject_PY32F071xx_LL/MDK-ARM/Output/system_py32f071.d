@@ -1,0 +1,9 @@
+.\output\system_py32f071.o: ..\Src\system_py32f071.c
+.\output\system_py32f071.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f0xx.h
+.\output\system_py32f071.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\py32f071xB.h
+.\output\system_py32f071.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\core_cm0plus.h
+.\output\system_py32f071.o: D:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
+.\output\system_py32f071.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_version.h
+.\output\system_py32f071.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_compiler.h
+.\output\system_py32f071.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Include\cmsis_armcc.h
+.\output\system_py32f071.o: ..\..\PY32F071_Firmware_V1.1.0\Drivers\CMSIS\Device\PY32F071\Include\system_py32f0xx.h
