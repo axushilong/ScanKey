@@ -12,8 +12,9 @@
   */
 
 #include "xB.h"
-
-
+#include "generic/typedef.h"
+// #include "debug.h"
+#include "generic/printf.h"
 
 static bool bIsOnlyClick(uxWide_t uxXBCapOnlyClick, uxWide_t uxXBValue){
     if(uxXBValue & (uxXBValue -1)){ //组合按键
@@ -35,13 +36,12 @@ static bool bIsOnlyClick(uxWide_t uxXBCapOnlyClick, uxWide_t uxXBValue){
 //     // }
 //     return (uxXBValue & (uxXBValue -1))? false : (uxXBValue & uxXBCapNoMultiClick);
 // }
-
 #define DE_IsNoMultiClick(a, b) ((b & (b -1)) ? false : (b & a))
 
 void vXB(stXBTypes * pstXB){
     stXBCfgTypes * pstXBCfg = pstXB->pstXBCfg;
 
-    uxWide_t uxNotifyVal = DE_NoPress; // 事件通知值
+    // static uxWide_t uxNotifyVal = DE_NoPress; // 事件通知值
     uint32_t uiEvent;
 
     uxWide_t uxCurVal = pstXBCfg->puxReadVal(); // 调用回调读取原始值
@@ -57,79 +57,51 @@ void vXB(stXBTypes * pstXB){
     }
     /* 2.事件检测 */
     if(uxCurVal != pstXB->uxLastValue){ // 值变化
-        if/*松开*/(uxCurVal == DE_NoPress){ // 变成无按键按下，即松开
+        if/*松开开始*/(uxCurVal == DE_NoPress){ // 变成无按键按下，即松开
             //不是长按或按住后松开，如果是只支持单击功能的按键松开，则释放单击松开事件
+            pstXB->ucReleasCnt = 1;
             if(bIsOnlyClick(pstXBCfg->uxCapOnlyClick, pstXB->uxLastValue)){
-                uxNotifyVal = pstXB->uxLastValue;
                 uiEvent = DE_XBEventUp; // 单击松开事件
+                printf("xBEventNotify-%d: keyVal=%d, event=%d, clickCnt=%d\n", __LINE__, pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
                 goto _LabelXBEventNotify;
             }
-            pstXB->ucReleasCnt = 1;
             if(DE_IsNoMultiClick(pstXBCfg->uxCapNoMultiClick, pstXB->uxLastValue)){ //不支持多击功能的按键松开
                 if(pstXB->usPressCnt >= pstXBCfg->usLongTime){ // 长按或按住后松开
-                    uxNotifyVal = pstXB->uxLastValue;
                     uiEvent = DE_XBEventUp; // 长按松开事件
+                    printf("xBEventNotify-%d: keyVal=%d, event=%d, clickCnt=%d\n", __LINE__, pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
                     goto _LabelXBEventNotify;
                 }
-                // //不是长按或按住后松开，如果是只支持单击功能的按键松开，则释放单击松开事件
-                // if(bIsOnlyClick(pstXBCfg->uxCapOnlyClick, pstXB->uxLastValue)){
-                //     uxNotifyVal = pstXB->uxLastValue;
-                //     uiEvent = DE_XBEventUp; // 单击松开事件
-                //     goto _LabelXBEventNotify;
-                // }
                 //不是长按或按住后松开，默认功能的按键松开，则释放松开单击事件
-                uxNotifyVal = pstXB->uxLastValue;
+                pstXB->uxNotifyValue = pstXB->uxLastValue;
                 uiEvent = DE_XBEventClick; // 松开单击事件
+                printf("xBEventNotify-%d: keyVal=%d, event=%d, clickCnt=%d\n", __LINE__, pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
                 goto _LabelXBEventNotify;
             }
+            // 多击按键松开只在超过最大多击次数时才上报
             if(pstXB->ucClickCnt == pstXBCfg->ucClickCntMax){ //已经是最大多击次数时
-                // pstXB->ucClickCnt = 1; //重置多击计数
-                uxNotifyVal = pstXB->uxNotifyValue;
-                uiEvent = pstXB->ucMultiClickEvent; // 多击的事件数据
-                pstXB->uxNotifyValue = DE_NoPress;
-                pstXB->ucMultiClickEvent = 0;
+                uiEvent = pstXB->ucMultiClickEvent;
+                printf("xBEventNotify-%d: keyVal=%d, event=%d, clickCnt=%d\n", __LINE__, pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
                 goto _LabelXBEventNotify;
             }
-        }else/*按下*/{ //变成其他键按下{1.从松开变到按下；2.从一个按键按下变到另一个按键按下}
+        }else/*按下开始*/{ //变成其他键按下{1.从松开变到按下；2.从一个按键按下变到另一个按键按下}
             pstXB->usPressCnt = 1;
-            // if(pstXB->uxLastValue == DE_NoPress){ // 从松开变到按下
-            //     ;
-            // }else{ // 从一个按键按下变到另一个按键按下
-            //     ;
-            // }
             if(uxCurVal != pstXB->uxNotifyValue){ // 从一个按键按下变到另一个按键按下
                 /* 不同按键: 先上报旧按键 */
                 if(pstXB->ucClickCnt > 0 && pstXB->uxNotifyValue != DE_NoPress){
-                    uxNotifyVal = pstXB->uxNotifyValue; // pstXB->uxLastValue; // 
-                    uiEvent = pstXB->ucMultiClickEvent; // 多击的事件数据
+                    uiEvent = (pstXB->ucClickCnt >= 2) ? pstXB->ucMultiClickEvent : DE_XBEventClick;
                     pstXB->uxNotifyValue = uxCurVal;    // 记录当前按键值
-                    pstXB->ucMultiClickEvent = 0;
-                    // goto _LabelXBEventNotify;
-                    printf("xBNotify: keyVal=%d, event = %d, clickCnt = %d\n",uxNotifyVal, uiEvent, pstXB->ucClickCnt);
-                    pstXBCfg->pvEventHandler(uxNotifyVal, uiEvent, pstXB->ucClickCnt);
+                    printf("xBEventNotify-%d: keyVal=%d, event=%d, clickCnt=%d\n", __LINE__, pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
+                    pstXBCfg->pvEventHandler(pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
                     pstXB->ucClickCnt = 0;
+                    pstXB->ucMultiClickEvent = 0;
                 }
-                // pstXB->ucClickCnt = 1
                 pstXB->uxNotifyValue = uxCurVal;    // 记录当前按键值
-            // }else{
-            //     if(pstXB->ucClickCnt <= pstXBCfg->ucClickCntMax){ // 记录当前按键值
-            //         // if(pstXB->ucClickCnt == pstXBCfg->ucClickCntMax){
-            //         //     // pstXB->ucClickCnt = 0;
-            //         //     uxNotifyVal = pstXB->uxNotifyValue;
-            //         //     uiEvent = DE_XBEventClick; // 多击的事件数据
-            //         //     goto _LabelXBEventNotify;
-            //         // }
-            //         pstXB->ucClickCnt++; // 记录当前按键值
-            //     }else{
-            //         ;
-            //     }
             }
             pstXB->ucClickCnt++;
             if(bIsOnlyClick(pstXBCfg->uxCapOnlyClick, uxCurVal)){
-                uxNotifyVal = uxCurVal;
+                pstXB->uxNotifyValue = uxCurVal;
                 uiEvent = DE_XBEventClick; // 单击事件
-                pstXB->uxNotifyValue = DE_NoPress;
-                // pstXB->ucMultiClickEvent = 0;
+                printf("xBEventNotify-%d: keyVal=%d, event=%d, clickCnt=%d\n", __LINE__, pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
                 goto _LabelXBEventNotify;
             }
             goto _LabelXBEnd;
@@ -137,24 +109,21 @@ void vXB(stXBTypes * pstXB){
     }
     //保持松开uxCurVal == pstXB->uxLastValue == DE_NoPress
     if(uxCurVal == DE_NoPress){
-        // pstXB->ucReleasCnt++;
-        if(pstXB->ucReleasCnt < pstXBCfg->ucClickDelayTime + pstXBCfg->ucHoldTime){
+        if(pstXB->ucReleasCnt < 254){// pstXBCfg->ucClickDelayTime + pstXBCfg->ucHoldTime){
             pstXB->ucReleasCnt++;
         }
-        if(pstXB->ucReleasCnt == pstXBCfg->ucClickDelayTime + pstXBCfg->ucHoldTime){ //保持松开超过一定时间，则上报按键空闲事件
+        if(pstXB->ucReleasCnt == 254){// pstXBCfg->ucClickDelayTime + pstXBCfg->ucHoldTime){ //保持松开超过一定时间，上报按键空闲事件
             pstXB->ucReleasCnt++;
-            uxNotifyVal = DE_NoPress;
             uiEvent = DE_XBEnentIdel; // 进入空闲状态
+            printf("xBEventNotify-%d: keyVal=%d, event=%d, clickCnt=%d\n", __LINE__, pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
             goto _LabelXBEventNotify;
         }
         if(pstXB->ucClickCnt > 0){//有多击事件要处理
-            if(pstXB->ucReleasCnt > pstXBCfg->ucClickDelayTime  && pstXB->ucClickCnt < pstXBCfg->ucClickCntMax){ //保持松开超过一定时间
-                uxNotifyVal = pstXB->uxNotifyValue;
-                uiEvent = (pstXB->ucClickCnt==1) ? DE_XBEventClick : pstXB->ucMultiClickEvent; // 多击的事件数据
-                pstXB->ucMultiClickEvent = 0;
+            if(pstXB->ucReleasCnt >= pstXBCfg->ucClickDelayTime  && pstXB->ucClickCnt < pstXBCfg->ucClickCntMax){ //保持松开超过一定时间
+                uiEvent = (pstXB->ucClickCnt >= 2) ? pstXB->ucMultiClickEvent : pstXB->ucMultiClickEvent ? DE_XBEventUp : DE_XBEventClick;
+                printf("xBEventNotify-%d: keyVal=%d, event=%d, clickCnt=%d\n", __LINE__, pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
                 goto _LabelXBEventNotify;
             }
-            // pstXB->ucReleasCnt++;
         }
         goto _LabelXBEnd;
     }
@@ -163,45 +132,38 @@ void vXB(stXBTypes * pstXB){
         goto _LabelXBEnd;
     }
     pstXB->usPressCnt++;
-    // if((pstXB->usPressCnt == 2) && (bIsOnlyClick(pstXBCfg->uxCapOnlyClick, pstXB->uxLastValue))){
-    //     uxNotifyVal = uxCurVal;
-    //     uiEvent = DE_XBEventClick; // 单击事件
-    //     goto _LabelXBEventNotify;
-    // }
     if(DE_IsNoMultiClick(pstXBCfg->uxCapNoMultiClick, pstXB->uxLastValue)){ //不支持多击功能的按键松开
         if(pstXB->usPressCnt == pstXBCfg->usLongTime){ // 长按
-            uxNotifyVal = uxCurVal;
+            pstXB->uxNotifyValue = uxCurVal;
             uiEvent = DE_XBEventLong; // 长按事件
+            printf("xBEventNotify-%d: keyVal=%d, event=%d, clickCnt=%d\n", __LINE__, pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
             goto _LabelXBEventNotify;
         }
         if(pstXB->usPressCnt >= pstXBCfg->usLongTime + pstXBCfg->ucHoldTime){ // 按住
             pstXB->usPressCnt = pstXBCfg->usLongTime;
-            uxNotifyVal = uxCurVal;
+            pstXB->uxNotifyValue = uxCurVal;
             uiEvent = DE_XBEventHold; // 按住事件
+            printf("xBEventNotify-%d: keyVal=%d, event=%d, clickCnt=%d\n", __LINE__, pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
             goto _LabelXBEventNotify;
         }
-        // goto _LabelXBEnd;
+    }else{ // 支持多击的按键，长按只标记到 ucMultiClickEvent，不立即上报
+        if(pstXB->usPressCnt == pstXBCfg->usLongTime){ // 长按标记
+            pstXB->ucMultiClickEvent |= (1<<(pstXB->ucClickCnt-1)); // bit(N-1)=第N击是长击
+            if(pstXB->ucClickCnt == 1){
+                uiEvent = DE_XBEventLong; // 长按事件
+                printf("xBEventNotify-%d: keyVal=%d, event=%d, clickCnt=%d\n", __LINE__, pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
+                // goto _LabelXBEventNotify;
+                pstXBCfg->pvEventHandler(pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
+                pstXB->uxLastValue = uxCurVal;
+                return;
+            }
+        }
     }
-    if(pstXB->usPressCnt == pstXBCfg->usLongTime){ // 长按
-        pstXB->ucMultiClickEvent |= (1<<pstXB->ucClickCnt);
-        // goto _LabelXBEnd;
-    }
-    // if(pstXB->usPressCnt == pstXBCfg->usLongTime){ // 长按
-    //     uxNotifyVal = uxCurVal;
-    //     uiEvent = DE_XBEventLong; // 长按事件
-    //     goto _LabelXBEventNotify;
-    // }
-    // if(pstXB->usPressCnt >= pstXBCfg->usLongTime + pstXBCfg->ucHoldTime){ // 按住
-    //     pstXB->usPressCnt = pstXBCfg->usLongTime;
-    //     uxNotifyVal = uxCurVal;
-    //     uiEvent = DE_XBEventHold; // 按住事件
-    //     goto _LabelXBEventNotify;
-    // }
     goto _LabelXBEnd;
 _LabelXBEventNotify:
-    printf("xBEventNotify: keyVal=%d, event = %d, clickCnt = %d\n",uxNotifyVal, uiEvent, pstXB->ucClickCnt);
-    pstXBCfg->pvEventHandler(uxNotifyVal, uiEvent, pstXB->ucClickCnt);
+    pstXBCfg->pvEventHandler(pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
     pstXB->ucClickCnt = 0; // 重置多击计数
+    pstXB->ucMultiClickEvent = 0; // 重置多击事件标记
 _LabelXBEnd:
     pstXB->uxLastValue = uxCurVal;
 }

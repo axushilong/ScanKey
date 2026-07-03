@@ -16,11 +16,11 @@ extern "C"{
 #endif
 
 #include <stdint.h>
-#include <stdbool.h>
+// #include "generic/typedef.h"
 
 #define DE_NoPress (0)
 
-#define DE_OnlyClickForComb
+// #define DE_OnlyClickForComb
 
 typedef uint16_t uxWide_t;
 
@@ -40,27 +40,31 @@ typedef uint16_t uxWide_t;
 //     eXBEventError  = 0xff
 // };
 
-#define DE_XBEnentIdel   (0)
-#define DE_XBEventClick  (1)
-#define DE_XBEventLong   (2)
-#define DE_XBEventHold   (3)
-#define DE_XBEventUp     (4)
-#define DE_XBEventClick2 (5)
-#define DE_XBEventClick3 (6)
-#define DE_XBEventClick4 (7)
-#define DE_XBEventClick5 (8)
-#define DE_XBEventClick6 (9)
-#define DE_XBEventClick7 (10)
-#define DE_XBEventClick8 (11)
-#define DE_XBEventError  (0xff)
+#define DE_XBEnentIdel    (0)
+#define DE_XBEventClick   (1)
+#define DE_XBEventLong    (2)
+#define DE_XBEventHold    (3)
+#define DE_XBEventUp      (4)
+// #define DE_XBEventClick2  (5)
+// #define DE_XBEventClick3  (6)
+// #define DE_XBEventClick4  (7)
+// #define DE_XBEventClick5  (8)
+// #define DE_XBEventClick6  (9)
+// #define DE_XBEventClick7  (10)
+// #define DE_XBEventClick8  (11)
+#define DE_XBEventError   (0xff)
 
 typedef uxWide_t (*puxFuncReadTypes)(void);
 // typedef void (*pvFuncInitTypes)(void);
 typedef void (*pvFuncEventHandlerTypes)(uxWide_t uxXBVal, uint8_t ucEvent, uint8_t ucClickCnt);
+/* 回调参数约定:
+ * ucClickCnt < 2 时: ucEvent = Click(1)/Long(2)/Hold(3)/Up(4)
+ * ucClickCnt >= 2 时: ucEvent = ucMultiClickEvent 位掩码, bit(N-1)=第N击是长击
+ *   例: 3击第1+3击长击 → ucClickCnt=3, ucEvent=0x05(bit0+bit2)
+ */
 
 
 typedef struct {
-    uint8_t ucIoKeyNum;          // 物理按键数 (能力表大小)
     uint8_t ucFilterTime;        // 消抖阈值   (默认3,  30ms@10ms)
     uint8_t usLongTime;          // 长按阈值   (默认75, 750ms)
     uint8_t ucHoldTime;          // Hold间隔   (默认15, 150ms)
@@ -87,7 +91,7 @@ typedef struct {
     uint8_t ucMultiClickEvent;   // 连击事件记录
     uxWide_t uxFilterValue;      // 消抖中稳定的按键值
     uxWide_t uxLastValue;        // 上次确认的按键值
-    uxWide_t uxNotifyValue;      // 多击时，待上报的按键值
+    uxWide_t uxNotifyValue;      // 多击时，待上报的按键值; 空闲事件中也使用此值
 
     // fnKeyEvtHandler pfnHandler;  // 事件回调
 } stXBTypes;
@@ -100,10 +104,32 @@ void vXB(stXBTypes * pstXB);
 2.配置定时扫描xB程序
 3.应用事件处理
 
-stXBTypes stXB = {
-    .stXBCfg = NULL,
-
+static stXBCfgTypes stXBCfg = {
+    .ucFilterTime = 3,
+    .usLongTime = 75,
+    .ucHoldTime = 15,
+    .ucClickDelayTime = 20,
+    .ucClickCntMax = 8,
+    .uxCapNoMultiClick = 0x00000000,
+    .uxCapOnlyClick = 0x00000000,
+    .puxReadVal = puxReadVal,
+    .pvEventHandler = pvEventHandler
 };
+
+stXBTypes stXB = {
+    .pstXBCfg = &stXBCfg,
+    .ucFilterCnt = 0,
+    .ucReleasCnt = 0,
+    .usPressCnt = 0,
+    .ucClickCnt = 0,
+    .ucMultiClickEvent = 0,
+    .uxFilterValue = 0,
+    .uxLastValue = 0,
+    .uxNotifyValue = 0
+};
+
+// 周期扫描xB程序
+vXB(&stXB);
 
 */
 
