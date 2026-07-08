@@ -12,16 +12,15 @@
   */
 
 #include "xB.h"
-#include "generic/typedef.h"
-// #include "debug.h"
-#include "generic/printf.h"
 
-static bool bIsOnlyClick(uxWide_t uxXBCapOnlyClick, uxWide_t uxXBValue){
+
+
+static uint8_t ucIsOnlyClick(uxWide_t uxXBCapOnlyClick, uxWide_t uxXBValue){
     if(uxXBValue & (uxXBValue -1)){ //组合按键
     #if defined(DE_OnlyClickForComb)
-        return true;
+        return 1;
     #else
-        return false;
+        return 0;
     #endif
     }else{
         return (uxXBValue & uxXBCapOnlyClick);
@@ -36,7 +35,7 @@ static bool bIsOnlyClick(uxWide_t uxXBCapOnlyClick, uxWide_t uxXBValue){
 //     // }
 //     return (uxXBValue & (uxXBValue -1))? false : (uxXBValue & uxXBCapNoMultiClick);
 // }
-#define DE_IsNoMultiClick(a, b) ((b & (b -1)) ? false : (b & a))
+#define DE_IsNoMultiClick(a, b) ((b & (b -1)) ? 0 : (b & a))
 
 void vXB(stXBTypes * pstXB){
     stXBCfgTypes * pstXBCfg = pstXB->pstXBCfg;
@@ -60,7 +59,7 @@ void vXB(stXBTypes * pstXB){
         if/*松开开始*/(uxCurVal == DE_NoPress){ // 变成无按键按下，即松开
             //不是长按或按住后松开，如果是只支持单击功能的按键松开，则释放单击松开事件
             pstXB->ucReleasCnt = 1;
-            if(bIsOnlyClick(pstXBCfg->uxCapOnlyClick, pstXB->uxLastValue)){
+            if(ucIsOnlyClick(pstXBCfg->uxCapOnlyClick, pstXB->uxLastValue)){
                 uiEvent = DE_XBEventUp; // 单击松开事件
                 printf("xBEventNotify-%d: keyVal=%d, event=%d, clickCnt=%d\n", __LINE__, pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
                 goto _LabelXBEventNotify;
@@ -98,7 +97,7 @@ void vXB(stXBTypes * pstXB){
                 pstXB->uxNotifyValue = uxCurVal;    // 记录当前按键值
             }
             pstXB->ucClickCnt++;
-            if(bIsOnlyClick(pstXBCfg->uxCapOnlyClick, uxCurVal)){
+            if(ucIsOnlyClick(pstXBCfg->uxCapOnlyClick, uxCurVal)){
                 pstXB->uxNotifyValue = uxCurVal;
                 uiEvent = DE_XBEventClick; // 单击事件
                 printf("xBEventNotify-%d: keyVal=%d, event=%d, clickCnt=%d\n", __LINE__, pstXB->uxNotifyValue, uiEvent, pstXB->ucClickCnt);
@@ -128,7 +127,7 @@ void vXB(stXBTypes * pstXB){
         goto _LabelXBEnd;
     }
     //保持按下uxCurVal == pstXB->uxLastValue
-    if(bIsOnlyClick(pstXBCfg->uxCapOnlyClick, uxCurVal)){
+    if(ucIsOnlyClick(pstXBCfg->uxCapOnlyClick, uxCurVal)){
         goto _LabelXBEnd;
     }
     pstXB->usPressCnt++;
